@@ -1,7 +1,7 @@
 
 #include "philo_one.h"
 
-uint64_t get_time(void)
+uint64_t cur_time(void)
 {
 	static struct timeval	tv;
 
@@ -9,143 +9,176 @@ uint64_t get_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-void print_state(uint64_t timestamp, int index, char *msg, pthread_mutex_t *mutex)
+void print_state(uint64_t timestamp, int index, char *msg)
 {
-	pthread_mutex_lock(mutex);
+	pthread_mutex_lock(party->print_mutex);
 	printf("%llu: philosopher %d %s\n", timestamp, index, msg);
-	pthread_mutex_unlock(mutex);
+	pthread_mutex_unlock(party->print_mutex);
+}
+
+void precise_sleep(uint64_t start_time, uint64_t ms_sleep)
+{
+	while ((cur_time() - start_time) < ms_sleep)
+		usleep(100);
+}
+
+void *trace()
+{
+	int i;
+	uint64_t current_time;
+	uint64_t time_last_eat;
+
+	while (1)
+	{
+		i = 0;
+		while (i < party->info->number_of_philosophers)
+		{
+			current_time = cur_time();
+			time_last_eat = party->time_last_eat[i];
+			if (current_time > time_last_eat &&
+			(current_time - time_last_eat) > party->info->time_to_die
+			&& party->is_anybody_die == -1)
+			{
+				party->is_anybody_die = i + 1;
+				party->time_of_death = cur_time() - party->t0;
+				return (NULL);
+			}
+		}
+	}
+}
+
+void deadlock_protection(uint64_t i, int philo_index)
+{
+	if (i == 1 && (philo_index % 2) == 0)
+		usleep(100);
 }
 
 void *lifecycle(void *philo_indexes)
 {
-	t_indexes indexes;
-	uint64_t time_of_start_eating;
-	uint64_t t0;
-	pthread_mutex_t *mutex1;
-	pthread_mutex_t *mutex2;
-	uint64_t ttd = fan_meeting->info->time_to_die;
-	uint64_t tte = fan_meeting->info->time_to_eat * 1000;
-	uint64_t tts = fan_meeting->info->time_to_sleep * 1000;
+	t_indexes	ind;
+	uint64_t	i;
 
-
-	indexes = *((t_indexes *)philo_indexes);
-	mutex1 = fan_meeting->cutlery[indexes.right_fork_index];
-	mutex2 = fan_meeting->cutlery[indexes.left_fork_index];
-
-
-	t0 = get_time();
-	time_of_start_eating = t0;
-	while (1)
+	ind = *((t_indexes *)philo_indexes);
+	i = 0;
+	while (++i)
 	{
-		//printf("%llu\n", get_time() - time_of_start_eating);
-
-		pthread_mutex_lock(mutex1);
-
-		print_state(get_time() - t0, indexes.philo_index, "has taken a fork", fan_meeting->print_mutex);
-		pthread_mutex_lock(mutex2);
-		print_state(get_time() - t0, indexes.philo_index, "has taken a fork", fan_meeting->print_mutex);
-
-		if ((get_time() - time_of_start_eating)  >= ttd)
-		{
-			fan_meeting->is_anybody_die = indexes.philo_index;
-			fan_meeting->time_of_death = get_time() - t0;
+		deadlock_protection(i, ind.philo_ind);
+		pthread_mutex_lock(party->cutlery[ind.rfork_ind]);
+		print_state(cur_time() - party->t0, ind.philo_ind, "has taken a fork");
+		pthread_mutex_lock(party->cutlery[ind.lfork_ind]);
+		print_state(cur_time() - party->t0, ind.philo_ind, "has taken a fork");
+		party->time_last_eat[ind.rfork_ind] = cur_time();
+		print_state(cur_time() - party->t0, ind.philo_ind, "is eating");
+		precise_sleep(cur_time(), party->info->time_to_eat);
+		pthread_mutex_unlock(party->cutlery[ind.lfork_ind]);
+		pthread_mutex_unlock(party->cutlery[ind.rfork_ind]);
+		if (i == party->info->number_of_times_each_philosopher_must_eat)
 			break;
-		}
-
-		print_state(get_time() - t0, indexes.philo_index, "is eating", fan_meeting->print_mutex);
-		time_of_start_eating = get_time();
-		usleep(tte);
-
-
-		pthread_mutex_unlock(mutex2);
-		pthread_mutex_unlock(mutex1);
-
-		print_state(get_time() - t0, indexes.philo_index, "is sleeping", fan_meeting->print_mutex);
-
-		usleep(tts);
-
-		print_state(get_time() - t0, indexes.philo_index, "is thinking", fan_meeting->print_mutex);
+		print_state(cur_time() - party->t0, ind.philo_ind, "is sleeping");
+		precise_sleep(cur_time(), party->info->time_to_sleep);
+		print_state(cur_time() - party->t0, ind.philo_ind, "is thinking");
 	}
+	party->is_anybody_die--;
 	return (NULL);
 }
 
-void simulate(t_sim_info *info)
+int simulate(t_sim_info *info)
 {
 	pthread_t		*threads;
-	pthread_mutex_t	**cutlery;
+	pthread_t 		trace_thread;
 	t_indexes		*indexes;
 	int				i;
 
 	if (!(threads = malloc(sizeof(pthread_t) * info->number_of_philosophers)))
-		return;
+		return (EXIT_FAILURE);
 	if (!(indexes = malloc(sizeof(t_indexes) * info->number_of_philosophers)))
 	{
 		free(threads);
-		return;
+		return (EXIT_FAILURE);
+	}
+	if (!(party->time_last_eat = malloc(sizeof(uint64_t) * info->number_of_philosophers)))
+	{
+		free(indexes);
+		free(threads);
+		return (EXIT_FAILURE);
 	}
 	i = 0;
 	while (i < (info->number_of_philosophers - 1))
 	{
-		indexes[i].philo_index = i + 1;
-		indexes[i].right_fork_index = i;
-		indexes[i].left_fork_index = i + 1;
+		indexes[i].philo_ind = i + 1;
+		indexes[i].rfork_ind = i;
+		indexes[i].lfork_ind = i + 1;
 		i++;
 	}
-	indexes[i].philo_index = i + 1;
-	indexes[i].right_fork_index = i;
-	indexes[i].left_fork_index = 0;
-	if (!(cutlery  = malloc(sizeof(pthread_mutex_t *) * info->number_of_philosophers)))
+	indexes[i].philo_ind = i + 1;
+	indexes[i].rfork_ind = i;
+	indexes[i].lfork_ind = 0;
+	if (!(party->cutlery  = malloc(sizeof(pthread_mutex_t *) * info->number_of_philosophers)))
 	{
+		free(party->time_last_eat);
 		free(indexes);
 		free(threads);
-		return;
+		return (EXIT_FAILURE);
 	}
 	i = 0;
 	while (i < info->number_of_philosophers)
 	{
-		cutlery[i] = malloc(sizeof(pthread_mutex_t));
+		(party->cutlery)[i] = malloc(sizeof(pthread_mutex_t));
 		i++;
 	}
-	fan_meeting->print_mutex = malloc(sizeof(pthread_mutex_t));
-	fan_meeting->cutlery = cutlery;
+	party->print_mutex = malloc(sizeof(pthread_mutex_t));
 	i = 0;
 	while (i < info->number_of_philosophers)
 	{
-		pthread_mutex_init(cutlery[i], NULL);
+		pthread_mutex_init((party->cutlery)[i], NULL);
 		i++;
 	}
-	pthread_mutex_init(fan_meeting->print_mutex, NULL);
+	pthread_mutex_init(party->print_mutex, NULL);
 	i = 0;
+	party->t0 = cur_time();
 	while (i < info->number_of_philosophers)
 	{
+		party->time_last_eat[i] = party->t0;
 		pthread_create(&threads[i], NULL, lifecycle, &indexes[i]);
-		usleep(10);
 		i++;
 	}
+	pthread_create(&trace_thread, NULL, trace, NULL);
 	i = 0;
 	while (1)
 	{
-		if (fan_meeting->is_anybody_die >= 0)
+		if (party->is_anybody_die >= 0)
 		{
+			pthread_detach(trace_thread);
 			while (i < info->number_of_philosophers)
 			{
 				pthread_detach(threads[i]);
 				i++;
 			}
-			printf("%llu: philosopher %d %s\n", fan_meeting->time_of_death, fan_meeting->is_anybody_die, "died");
+			printf("%llu: philosopher %d %s\n", party->time_of_death, party->is_anybody_die, "died");
+			break;
+		}
+		if (party->is_anybody_die == -party->info->number_of_philosophers - 1)
+		{
+			pthread_detach(trace_thread);
+			while (i < info->number_of_philosophers)
+			{
+				pthread_detach(threads[i]);
+				i++;
+			}
 			break;
 		}
 	}
+	printf("End of simulation");
 	free(indexes);
 	free(threads);
 	i = 0;
 	while (i < info->number_of_philosophers)
 	{
-		pthread_mutex_destroy(cutlery[i]);
+		pthread_mutex_destroy(party->cutlery[i]);
 		i++;
 	}
-	pthread_mutex_destroy(fan_meeting->print_mutex);
-	printf("\n\nFINISH");
+	pthread_mutex_destroy(party->print_mutex);
+	return (0);
 }
 
 int main(int argc, char *argv[])
@@ -154,7 +187,7 @@ int main(int argc, char *argv[])
 
 	if (argc != 5 && argc != 6)
 	{
-		printf("Wrong number of arguments");
+		printf("Wrong number of arguments\n");
 		return (1);
 	}
 
@@ -164,12 +197,12 @@ int main(int argc, char *argv[])
 	sim_info.time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5])
 		sim_info.number_of_times_each_philosopher_must_eat = ft_atoi(argv[5]);
-
-	if (!(fan_meeting = malloc(sizeof(t_philo_party))))
+	else
+		sim_info.number_of_times_each_philosopher_must_eat = INT64_MAX;
+	if (!(party = malloc(sizeof(t_philo_party))))
 		return (EXIT_FAILURE);
-	fan_meeting->info = &sim_info;
-	fan_meeting->is_anybody_die = -1;
+	party->info = &sim_info;
+	party->is_anybody_die = -1;
 
-	simulate(&sim_info);
-	return (0);
+	return (simulate(&sim_info));
 }
