@@ -4,6 +4,15 @@
 CMakeFiles/philo_one.dir/ft_atoi.c.o: ../ft_atoi.c
 CMakeFiles/philo_one.dir/ft_atoi.c.o: ../philo_one.h
 
+CMakeFiles/philo_one.dir/init.c.o: ../init.c
+CMakeFiles/philo_one.dir/init.c.o: ../philo_one.h
+
 CMakeFiles/philo_one.dir/main.c.o: ../main.c
 CMakeFiles/philo_one.dir/main.c.o: ../philo_one.h
+
+CMakeFiles/philo_one.dir/sim.c.o: ../philo_one.h
+CMakeFiles/philo_one.dir/sim.c.o: ../sim.c
+
+CMakeFiles/philo_one.dir/utils.c.o: ../philo_one.h
+CMakeFiles/philo_one.dir/utils.c.o: ../utils.c
 

@@ -170,6 +170,33 @@ ft_atoi.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_one.dir/build.make CMakeFiles/philo_one.dir/ft_atoi.c.s
 .PHONY : ft_atoi.c.s
 
+init.o: init.c.o
+
+.PHONY : init.o
+
+# target to build an object file
+init.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_one.dir/build.make CMakeFiles/philo_one.dir/init.c.o
+.PHONY : init.c.o
+
+init.i: init.c.i
+
+.PHONY : init.i
+
+# target to preprocess a source file
+init.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_one.dir/build.make CMakeFiles/philo_one.dir/init.c.i
+.PHONY : init.c.i
+
+init.s: init.c.s
+
+.PHONY : init.s
+
+# target to generate assembly for a file
+init.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_one.dir/build.make CMakeFiles/philo_one.dir/init.c.s
+.PHONY : init.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -197,6 +224,60 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_one.dir/build.make CMakeFiles/philo_one.dir/main.c.s
 .PHONY : main.c.s
 
+sim.o: sim.c.o
+
+.PHONY : sim.o
+
+# target to build an object file
+sim.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_one.dir/build.make CMakeFiles/philo_one.dir/sim.c.o
+.PHONY : sim.c.o
+
+sim.i: sim.c.i
+
+.PHONY : sim.i
+
+# target to preprocess a source file
+sim.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_one.dir/build.make CMakeFiles/philo_one.dir/sim.c.i
+.PHONY : sim.c.i
+
+sim.s: sim.c.s
+
+.PHONY : sim.s
+
+# target to generate assembly for a file
+sim.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_one.dir/build.make CMakeFiles/philo_one.dir/sim.c.s
+.PHONY : sim.c.s
+
+utils.o: utils.c.o
+
+.PHONY : utils.o
+
+# target to build an object file
+utils.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_one.dir/build.make CMakeFiles/philo_one.dir/utils.c.o
+.PHONY : utils.c.o
+
+utils.i: utils.c.i
+
+.PHONY : utils.i
+
+# target to preprocess a source file
+utils.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_one.dir/build.make CMakeFiles/philo_one.dir/utils.c.i
+.PHONY : utils.c.i
+
+utils.s: utils.c.s
+
+.PHONY : utils.s
+
+# target to generate assembly for a file
+utils.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/philo_one.dir/build.make CMakeFiles/philo_one.dir/utils.c.s
+.PHONY : utils.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -209,9 +290,18 @@ help:
 	@echo "... ft_atoi.o"
 	@echo "... ft_atoi.i"
 	@echo "... ft_atoi.s"
+	@echo "... init.o"
+	@echo "... init.i"
+	@echo "... init.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... sim.o"
+	@echo "... sim.i"
+	@echo "... sim.s"
+	@echo "... utils.o"
+	@echo "... utils.i"
+	@echo "... utils.s"
 .PHONY : help
 
 

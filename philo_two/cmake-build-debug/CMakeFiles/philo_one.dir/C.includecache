@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/wrudy/Desktop/philo_two/init.c
+philo_two.h
+/Users/wrudy/Desktop/philo_two/philo_two.h
+
+/Users/wrudy/Desktop/philo_two/main.c
+philo_two.h
+/Users/wrudy/Desktop/philo_two/philo_two.h
+
+/Users/wrudy/Desktop/philo_two/philo_two.h
+stdio.h
+-
+stdlib.h
+-
+pthread.h
+-
+semaphore.h
+-
+unistd.h
+-
+sys/time.h
+-
+fcntl.h
+-
+
+/Users/wrudy/Desktop/philo_two/sim.c
+philo_two.h
+/Users/wrudy/Desktop/philo_two/philo_two.h
+

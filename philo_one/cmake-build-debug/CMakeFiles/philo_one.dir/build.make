@@ -103,19 +103,64 @@ CMakeFiles/philo_one.dir/ft_atoi.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/philo_one.dir/ft_atoi.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/wrudy/Desktop/philo_one/ft_atoi.c -o CMakeFiles/philo_one.dir/ft_atoi.c.s
 
+CMakeFiles/philo_one.dir/utils.c.o: CMakeFiles/philo_one.dir/flags.make
+CMakeFiles/philo_one.dir/utils.c.o: ../utils.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/wrudy/Desktop/philo_one/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/philo_one.dir/utils.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/philo_one.dir/utils.c.o   -c /Users/wrudy/Desktop/philo_one/utils.c
+
+CMakeFiles/philo_one.dir/utils.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/philo_one.dir/utils.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/wrudy/Desktop/philo_one/utils.c > CMakeFiles/philo_one.dir/utils.c.i
+
+CMakeFiles/philo_one.dir/utils.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/philo_one.dir/utils.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/wrudy/Desktop/philo_one/utils.c -o CMakeFiles/philo_one.dir/utils.c.s
+
+CMakeFiles/philo_one.dir/sim.c.o: CMakeFiles/philo_one.dir/flags.make
+CMakeFiles/philo_one.dir/sim.c.o: ../sim.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/wrudy/Desktop/philo_one/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/philo_one.dir/sim.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/philo_one.dir/sim.c.o   -c /Users/wrudy/Desktop/philo_one/sim.c
+
+CMakeFiles/philo_one.dir/sim.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/philo_one.dir/sim.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/wrudy/Desktop/philo_one/sim.c > CMakeFiles/philo_one.dir/sim.c.i
+
+CMakeFiles/philo_one.dir/sim.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/philo_one.dir/sim.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/wrudy/Desktop/philo_one/sim.c -o CMakeFiles/philo_one.dir/sim.c.s
+
+CMakeFiles/philo_one.dir/init.c.o: CMakeFiles/philo_one.dir/flags.make
+CMakeFiles/philo_one.dir/init.c.o: ../init.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/wrudy/Desktop/philo_one/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/philo_one.dir/init.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/philo_one.dir/init.c.o   -c /Users/wrudy/Desktop/philo_one/init.c
+
+CMakeFiles/philo_one.dir/init.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/philo_one.dir/init.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/wrudy/Desktop/philo_one/init.c > CMakeFiles/philo_one.dir/init.c.i
+
+CMakeFiles/philo_one.dir/init.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/philo_one.dir/init.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/wrudy/Desktop/philo_one/init.c -o CMakeFiles/philo_one.dir/init.c.s
+
 # Object files for target philo_one
 philo_one_OBJECTS = \
 "CMakeFiles/philo_one.dir/main.c.o" \
-"CMakeFiles/philo_one.dir/ft_atoi.c.o"
+"CMakeFiles/philo_one.dir/ft_atoi.c.o" \
+"CMakeFiles/philo_one.dir/utils.c.o" \
+"CMakeFiles/philo_one.dir/sim.c.o" \
+"CMakeFiles/philo_one.dir/init.c.o"
 
 # External object files for target philo_one
 philo_one_EXTERNAL_OBJECTS =
 
 philo_one: CMakeFiles/philo_one.dir/main.c.o
 philo_one: CMakeFiles/philo_one.dir/ft_atoi.c.o
+philo_one: CMakeFiles/philo_one.dir/utils.c.o
+philo_one: CMakeFiles/philo_one.dir/sim.c.o
+philo_one: CMakeFiles/philo_one.dir/init.c.o
 philo_one: CMakeFiles/philo_one.dir/build.make
 philo_one: CMakeFiles/philo_one.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/wrudy/Desktop/philo_one/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable philo_one"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/wrudy/Desktop/philo_one/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking C executable philo_one"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/philo_one.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -81,10 +81,19 @@
 		<Unit filename="/Users/wrudy/Desktop/philo_one/ft_atoi.c">
 			<Option target="philo_one"/>
 		</Unit>
+		<Unit filename="/Users/wrudy/Desktop/philo_one/init.c">
+			<Option target="philo_one"/>
+		</Unit>
 		<Unit filename="/Users/wrudy/Desktop/philo_one/main.c">
 			<Option target="philo_one"/>
 		</Unit>
 		<Unit filename="/Users/wrudy/Desktop/philo_one/philo_one.h">
+			<Option target="philo_one"/>
+		</Unit>
+		<Unit filename="/Users/wrudy/Desktop/philo_one/sim.c">
+			<Option target="philo_one"/>
+		</Unit>
+		<Unit filename="/Users/wrudy/Desktop/philo_one/utils.c">
 			<Option target="philo_one"/>
 		</Unit>
 		<Unit filename="/Users/wrudy/Desktop/philo_one/CMakeLists.txt">
