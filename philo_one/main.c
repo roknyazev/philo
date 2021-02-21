@@ -24,14 +24,14 @@ int	simulate(void)
 	g_party->t0 = cur_time();
 	while (i < g_party->info->number_of_philosophers)
 	{
-		g_party->time_last_eat[i] = g_party->t0;
+		g_party->time_last_eat[i] = cur_time();
 		pthread_create(&threads[i], NULL, lifecycle, &indexes[i]);
 		i++;
 	}
 	monitoring();
 	while (i--)
-		pthread_detach(threads[i]);
-	if (g_party->is_anybody_die >= 0)
+		pthread_join(threads[i], NULL);
+	if (g_party->is_anybody_die > 0)
 		printf("%llu: philosopher %d %s\n",
 				g_party->time_of_death, g_party->is_anybody_die, "died");
 	printf("End of simulation\n");
@@ -45,7 +45,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 5 && argc != 6)
 		return (error("Wrong number of arguments", 1));
-	if (((sim_info.number_of_philosophers = ft_atoi(argv[1])) < 1))
+	if (((sim_info.number_of_philosophers = ft_atoi(argv[1])) <= 1))
 		return (error("Invalid number of philosophers", 1));
 	if (((sim_info.time_to_die = ft_atoi(argv[2])) < 1))
 		return (error("Invalid time to die", 1));

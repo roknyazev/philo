@@ -23,10 +23,7 @@ void	secure_exit(pthread_t *threads, t_indexes *indexes)
 	if (g_party->time_last_eat != NULL)
 		free(g_party->time_last_eat);
 	if (g_party->print_mutex != NULL)
-	{
-		pthread_mutex_destroy(g_party->print_mutex);
 		free(g_party->print_mutex);
-	}
 	i = 0;
 	if (g_party->cutlery != NULL)
 	{

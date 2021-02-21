@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 int	simulate(void)
 {
@@ -23,22 +23,26 @@ int	simulate(void)
 	if (!init(&threads, &indexes))
 		return (error("Init error", EXIT_FAILURE));
 	i = 0;
+	g_party->t0 = cur_time();
 	while (i < g_party->info->number_of_philosophers)
 	{
 		process_id = fork();
 		if (process_id == 0)
-		{
-			lifecycle(indexes);
-		}
+			lifecycle(&(indexes[i]));
 		i++;
 	}
 	waitpid(-1, &status, 0);
-
 	sem_close(g_party->cutlery);
 	if (WEXITSTATUS(status) > 0)
 		printf("%llu: philosopher %d %s\n",
-				cur_time(), WEXITSTATUS(status), "died");
+				cur_time() - g_party->t0, WEXITSTATUS(status), "died");
+	else
+	{
+		while (i--)
+			waitpid(-1, &status, 0);
+	}
 	printf("End of simulation\n");
+	kill(0, SIGINT);
 	secure_exit(threads, indexes);
 	return (0);
 }

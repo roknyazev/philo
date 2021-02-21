@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
 void	secure_exit(pthread_t *threads, t_indexes *indexes)
 {
@@ -68,7 +68,6 @@ int		init(pthread_t **threads, t_indexes **indexes)
 	*indexes = NULL;
 	g_party->print_sem = NULL;
 	g_party->cutlery = NULL;
-	g_party->is_anybody_die = -1;
 	if (!init_indexes(indexes) || !init_threads(threads) || !init_party())
 	{
 		secure_exit(*threads, *indexes);

@@ -21,6 +21,7 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <fcntl.h>
+# include <signal.h>
 
 typedef struct		s_sim_info
 {
@@ -36,7 +37,6 @@ typedef struct		s_philo_party
 	t_sim_info		*info;
 	int				is_anybody_die;
 	uint64_t		t0;
-	uint64_t		time_of_death;
 	uint64_t		time_last_eat;
 	sem_t			*print_sem;
 	sem_t			*cutlery;

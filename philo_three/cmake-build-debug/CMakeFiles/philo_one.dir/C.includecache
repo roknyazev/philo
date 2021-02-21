@@ -6,15 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/Users/wrudy/Desktop/philo_three/init.c
-philo_two.h
-/Users/wrudy/Desktop/philo_three/philo_two.h
-
 /Users/wrudy/Desktop/philo_three/main.c
-philo_two.h
-/Users/wrudy/Desktop/philo_three/philo_two.h
+philo_three.h
+/Users/wrudy/Desktop/philo_three/philo_three.h
 
-/Users/wrudy/Desktop/philo_three/philo_two.h
+/Users/wrudy/Desktop/philo_three/philo_three.h
 stdio.h
 -
 stdlib.h
@@ -28,5 +24,7 @@ unistd.h
 sys/time.h
 -
 fcntl.h
+-
+signal.h
 -
 

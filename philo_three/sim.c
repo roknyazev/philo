@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo_two.h"
+#include "philo_three.h"
 
-void	*monitoring(void)
+void	*monitoring()
 {
 
 	uint64_t	current_time;
@@ -22,9 +22,10 @@ void	*monitoring(void)
 	{
 		current_time = cur_time();
 		time_last_eat = g_party->time_last_eat;
+		usleep(100);
 		if (current_time > time_last_eat &&
 		(current_time - time_last_eat) > g_party->info->time_to_die
-		&& g_party->is_anybody_die == -1)
+		&& cur_time() > current_time)
 		{
 			sem_post(g_party->print_sem);
 			sem_close(g_party->print_sem);
@@ -40,11 +41,10 @@ void	*lifecycle(void *philo_indexes)
 	pthread_t 	monitor_thread;
 
 	ind = *((t_indexes *)philo_indexes);
-	g_party->is_anybody_die = ind.rfork_ind;
-	g_party->t0 = cur_time();
+	g_party->is_anybody_die = ind.philo_ind;
 	g_party->time_last_eat = cur_time();
 	i = 0;
-	pthread_create(&monitor_thread, NULL, monitoring(), NULL);
+	pthread_create(&monitor_thread, NULL, monitoring, NULL);
 	while (++i)
 	{
 		deadlock_protection(i, ind.philo_ind);

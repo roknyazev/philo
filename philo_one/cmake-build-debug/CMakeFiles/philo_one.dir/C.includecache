@@ -6,7 +6,15 @@
 
 #IncludeRegexTransform: 
 
+/Users/wrudy/Desktop/philo_one/ft_atoi.c
+philo_one.h
+/Users/wrudy/Desktop/philo_one/philo_one.h
+
 /Users/wrudy/Desktop/philo_one/init.c
+philo_one.h
+/Users/wrudy/Desktop/philo_one/philo_one.h
+
+/Users/wrudy/Desktop/philo_one/main.c
 philo_one.h
 /Users/wrudy/Desktop/philo_one/philo_one.h
 
@@ -21,4 +29,12 @@ unistd.h
 -
 sys/time.h
 -
+
+/Users/wrudy/Desktop/philo_one/sim.c
+philo_one.h
+/Users/wrudy/Desktop/philo_one/philo_one.h
+
+/Users/wrudy/Desktop/philo_one/utils.c
+philo_one.h
+/Users/wrudy/Desktop/philo_one/philo_one.h
 
