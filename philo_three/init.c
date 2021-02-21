@@ -54,10 +54,11 @@ int		init_party(void)
 {
 	sem_unlink(SEMAPHORE_NAME1);
 	sem_unlink(SEMAPHORE_NAME2);
-	if ((g_party->print_sem = sem_open(SEMAPHORE_NAME1, O_CREAT, 0777, 1)) == SEM_FAILED)
+	if ((g_party->print_sem =
+			sem_open(SEMAPHORE_NAME1, O_CREAT, 0777, 1)) == SEM_FAILED)
 		return (error("sem_open error", 0));
 	if ((g_party->cutlery = sem_open(SEMAPHORE_NAME2, O_CREAT, 0777,
-							g_party->info->number_of_philosophers)) == SEM_FAILED)
+						g_party->info->number_of_philosophers)) == SEM_FAILED)
 		return (error("sem_open error", 0));
 	return (1);
 }

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_ONE_PHILO_ONE_H
-# define PHILO_ONE_PHILO_ONE_H
+#ifndef PHILO_TWO_PHILO_TWO_H
+# define PHILO_TWO_PHILO_TWO_H
 # define SEMAPHORE_NAME1 "/philo_semaphore1"
 # define SEMAPHORE_NAME2 "/philo_semaphore2"
 # include <stdio.h>

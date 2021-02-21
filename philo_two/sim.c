@@ -20,8 +20,8 @@ void	monitoring(void)
 
 	while (1)
 	{
-		i = 0;
-		while (i < g_party->info->number_of_philosophers)
+		i = g_party->info->number_of_philosophers;
+		while (i--)
 		{
 			current_time = cur_time();
 			time_last_eat = g_party->time_last_eat[i];
@@ -37,9 +37,27 @@ void	monitoring(void)
 			}
 			if (g_party->end_of_sim == 1)
 				return ;
-			i++;
 		}
 	}
+}
+
+int		is_eating(t_indexes *ind)
+{
+	sem_wait(g_party->cutlery);
+	if (!state(cur_time() - g_party->t0, ind->philo_ind,
+			"has taken a fork", 1))
+		return (0);
+	sem_wait(g_party->cutlery);
+	if (!state(cur_time() - g_party->t0, ind->philo_ind,
+			"has taken a fork", 2))
+		return (0);
+	g_party->time_last_eat[ind->rfork_ind] = cur_time();
+	if (!state(cur_time() - g_party->t0, ind->philo_ind, "is eating", 2))
+		return (0);
+	precise_sleep(cur_time(), g_party->info->time_to_eat);
+	sem_post(g_party->cutlery);
+	sem_post(g_party->cutlery);
+	return (1);
 }
 
 void	*lifecycle(void *philo_indexes)
@@ -52,25 +70,15 @@ void	*lifecycle(void *philo_indexes)
 	while (++i)
 	{
 		deadlock_protection(i, ind.philo_ind);
-		sem_wait(g_party->cutlery);
-		if (!state(cur_time() - g_party->t0, ind.philo_ind, "has taken a fork", 1))
-			break;
-		sem_wait(g_party->cutlery);
-		if (!state(cur_time() - g_party->t0, ind.philo_ind, "has taken a fork", 2))
-			break;
-		g_party->time_last_eat[ind.rfork_ind] = cur_time();
-		if (!state(cur_time() - g_party->t0, ind.philo_ind, "is eating", 2))
-			break;
-		precise_sleep(cur_time(), g_party->info->time_to_eat);
-		sem_post(g_party->cutlery);
-		sem_post(g_party->cutlery);
+		if (!is_eating(&ind))
+			break ;
 		if (i == g_party->info->number_of_times_each_philosopher_must_eat)
 			break ;
 		if (!state(cur_time() - g_party->t0, ind.philo_ind, "is sleeping", 0))
-			break;
+			break ;
 		precise_sleep(cur_time(), g_party->info->time_to_sleep);
 		if (!state(cur_time() - g_party->t0, ind.philo_ind, "is thinking", 0))
-			break;
+			break ;
 	}
 	g_party->end_of_sim = 1;
 	return (NULL);

@@ -6,6 +6,14 @@
 
 #IncludeRegexTransform: 
 
+/Users/wrudy/Desktop/philo_three/ft_atoi.c
+philo_three.h
+/Users/wrudy/Desktop/philo_three/philo_three.h
+
+/Users/wrudy/Desktop/philo_three/init.c
+philo_three.h
+/Users/wrudy/Desktop/philo_three/philo_three.h
+
 /Users/wrudy/Desktop/philo_three/main.c
 philo_three.h
 /Users/wrudy/Desktop/philo_three/philo_three.h
@@ -27,4 +35,12 @@ fcntl.h
 -
 signal.h
 -
+
+/Users/wrudy/Desktop/philo_three/sim.c
+philo_three.h
+/Users/wrudy/Desktop/philo_three/philo_three.h
+
+/Users/wrudy/Desktop/philo_three/utils.c
+philo_three.h
+/Users/wrudy/Desktop/philo_three/philo_three.h
 

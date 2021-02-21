@@ -23,16 +23,18 @@ void	secure_exit(pthread_t *threads, t_indexes *indexes)
 	if (g_party->time_last_eat != NULL)
 		free(g_party->time_last_eat);
 	if (g_party->print_mutex != NULL)
+	{
+		pthread_mutex_destroy(g_party->print_mutex);
 		free(g_party->print_mutex);
-	i = 0;
+	}
+	i = -1;
 	if (g_party->cutlery != NULL)
 	{
-		while (i < g_party->info->number_of_philosophers
+		while (++i < g_party->info->number_of_philosophers
 		&& (g_party->cutlery)[i] != NULL)
 		{
 			pthread_mutex_destroy((g_party->cutlery)[i]);
 			free((g_party->cutlery)[i]);
-			i++;
 		}
 		free(g_party->cutlery);
 	}

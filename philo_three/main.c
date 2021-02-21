@@ -12,13 +12,30 @@
 
 #include "philo_three.h"
 
-int	simulate(void)
+void	finish(int i)
+{
+	int			status;
+
+	waitpid(-1, &status, 0);
+	sem_close(g_party->cutlery);
+	if (WEXITSTATUS(status) > 0)
+		printf("%llu: philosopher %d %s\n",
+			cur_time() - g_party->t0, WEXITSTATUS(status), "died");
+	else
+	{
+		while (i--)
+			waitpid(-1, &status, 0);
+	}
+	printf("End of simulation\n");
+	kill(0, SIGINT);
+}
+
+int		simulate(void)
 {
 	pthread_t		*threads;
 	t_indexes		*indexes;
 	int				i;
 	pid_t			process_id;
-	int 			status;
 
 	if (!init(&threads, &indexes))
 		return (error("Init error", EXIT_FAILURE));
@@ -31,23 +48,11 @@ int	simulate(void)
 			lifecycle(&(indexes[i]));
 		i++;
 	}
-	waitpid(-1, &status, 0);
-	sem_close(g_party->cutlery);
-	if (WEXITSTATUS(status) > 0)
-		printf("%llu: philosopher %d %s\n",
-				cur_time() - g_party->t0, WEXITSTATUS(status), "died");
-	else
-	{
-		while (i--)
-			waitpid(-1, &status, 0);
-	}
-	printf("End of simulation\n");
-	kill(0, SIGINT);
-	secure_exit(threads, indexes);
+	finish(i);
 	return (0);
 }
 
-int	main(int argc, char *argv[])
+int		main(int argc, char *argv[])
 {
 	t_sim_info sim_info;
 

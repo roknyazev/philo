@@ -49,7 +49,7 @@ typedef struct		s_indexes
 t_philo_party		*g_party;
 int					ft_atoi(const char *nptr);
 uint64_t			cur_time(void);
-int					state(uint64_t timestamp, int index, char *msg, t_indexes *ind);
+int					state(uint64_t timestamp, char *msg, t_indexes *ind);
 void				precise_sleep(uint64_t start_time, uint64_t ms_sleep);
 void				monitoring();
 void				*lifecycle(void *philo_indexes);

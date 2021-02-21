@@ -20,7 +20,7 @@ uint64_t	cur_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-int		state(uint64_t timestamp, int index, char *msg, t_indexes *ind)
+int			state(uint64_t timestamp, char *msg, t_indexes *ind)
 {
 	if (pthread_mutex_lock(g_party->print_mutex) != 0)
 	{
@@ -28,8 +28,7 @@ int		state(uint64_t timestamp, int index, char *msg, t_indexes *ind)
 		pthread_mutex_unlock(g_party->cutlery[ind->lfork_ind]);
 		return (0);
 	}
-
-	printf("%llu: philosopher %d %s\n", timestamp, index, msg);
+	printf("%llu: philosopher %d %s\n", timestamp, ind->philo_ind, msg);
 	pthread_mutex_unlock(g_party->print_mutex);
 	return (1);
 }

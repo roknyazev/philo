@@ -6,14 +6,6 @@
 
 #IncludeRegexTransform: 
 
-/Users/wrudy/Desktop/philo_two/init.c
-philo_two.h
-/Users/wrudy/Desktop/philo_two/philo_two.h
-
-/Users/wrudy/Desktop/philo_two/main.c
-philo_two.h
-/Users/wrudy/Desktop/philo_two/philo_two.h
-
 /Users/wrudy/Desktop/philo_two/philo_two.h
 stdio.h
 -

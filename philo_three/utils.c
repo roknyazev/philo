@@ -20,7 +20,7 @@ uint64_t	cur_time(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
-int		state(uint64_t timestamp, int index, char *msg, int count)
+int			state(uint64_t timestamp, int index, char *msg, int count)
 {
 	if (sem_wait(g_party->print_sem))
 	{
