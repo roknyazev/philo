@@ -12,11 +12,12 @@
 
 #include "philo_three.h"
 
-void	*monitoring(void)
+void	*monitoring(void *pass)
 {
 	uint64_t	current_time;
 	uint64_t	time_last_eat;
 
+	pass = NULL;
 	while (1)
 	{
 		current_time = cur_time();

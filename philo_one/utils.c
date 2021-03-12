@@ -36,11 +36,35 @@ int			state(uint64_t timestamp, char *msg, t_indexes *ind)
 void		precise_sleep(uint64_t start_time, uint64_t ms_sleep)
 {
 	while ((cur_time() - start_time) < ms_sleep)
+	{
+		if (g_party->is_anybody_die > 0)
+			return ;
 		usleep(100);
+	}
 }
 
 int			error(char *text, int code)
 {
 	printf("%s\n", text);
 	return (code);
+}
+
+int			is_numbers(int argc, char **argv)
+{
+	int i;
+	int j;
+
+	j = 1;
+	while (j < argc)
+	{
+		i = 0;
+		while (argv[j][i] != '\0')
+		{
+			if (argv[j][i] < '0' || argv[j][i] > '9')
+				return (0);
+			i++;
+		}
+		j++;
+	}
+	return (1);
 }

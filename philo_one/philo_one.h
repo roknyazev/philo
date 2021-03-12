@@ -20,7 +20,7 @@
 
 typedef struct		s_sim_info
 {
-	uint64_t		number_of_philosophers;
+	int				number_of_philosophers;
 	uint64_t		time_to_die;
 	uint64_t		time_to_eat;
 	uint64_t		time_to_sleep;
@@ -56,5 +56,6 @@ void				*lifecycle(void *philo_indexes);
 int					init(pthread_t **threads, t_indexes **indexes);
 void				secure_exit(pthread_t *threads, t_indexes *indexes);
 int					error(char *text, int code);
+int					is_numbers(int argc, char **argv);
 
 #endif

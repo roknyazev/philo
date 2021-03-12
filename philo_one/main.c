@@ -43,8 +43,8 @@ int	main(int argc, char *argv[])
 {
 	t_sim_info sim_info;
 
-	if (argc != 5 && argc != 6)
-		return (error("Wrong number of arguments", 1));
+	if ((argc != 5 && argc != 6) || !is_numbers(argc, argv))
+		return (error("Wrong arguments", 1));
 	if (((sim_info.number_of_philosophers = ft_atoi(argv[1])) <= 1))
 		return (error("Invalid number of philosophers", 1));
 	if (((sim_info.time_to_die = ft_atoi(argv[2])) < 40))

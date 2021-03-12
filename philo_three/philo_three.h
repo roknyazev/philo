@@ -25,7 +25,7 @@
 
 typedef struct		s_sim_info
 {
-	uint64_t		number_of_philosophers;
+	int				number_of_philosophers;
 	uint64_t		time_to_die;
 	uint64_t		time_to_eat;
 	uint64_t		time_to_sleep;

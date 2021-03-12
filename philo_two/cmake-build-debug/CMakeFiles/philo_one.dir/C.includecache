@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+/Users/wrudy/Desktop/philo_two/main.c
+philo_two.h
+/Users/wrudy/Desktop/philo_two/philo_two.h
+
 /Users/wrudy/Desktop/philo_two/philo_two.h
 stdio.h
 -
@@ -22,7 +26,7 @@ sys/time.h
 fcntl.h
 -
 
-/Users/wrudy/Desktop/philo_two/sim.c
+/Users/wrudy/Desktop/philo_two/utils.c
 philo_two.h
 /Users/wrudy/Desktop/philo_two/philo_two.h
 

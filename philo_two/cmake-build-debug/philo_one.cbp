@@ -87,7 +87,7 @@
 		<Unit filename="/Users/wrudy/Desktop/philo_two/main.c">
 			<Option target="philo_one"/>
 		</Unit>
-		<Unit filename="/Users/wrudy/Desktop/philo_two/philo_one.h">
+		<Unit filename="/Users/wrudy/Desktop/philo_two/philo_two.h">
 			<Option target="philo_one"/>
 		</Unit>
 		<Unit filename="/Users/wrudy/Desktop/philo_two/sim.c">

@@ -39,7 +39,11 @@ int			state(uint64_t timestamp, int index, char *msg, int count)
 void		precise_sleep(uint64_t start_time, uint64_t ms_sleep)
 {
 	while ((cur_time() - start_time) < ms_sleep)
+	{
+		if (g_party->is_anybody_die > 0)
+			return ;
 		usleep(100);
+	}
 }
 
 void		deadlock_protection(uint64_t i, int philo_index)
