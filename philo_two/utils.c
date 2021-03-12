@@ -22,7 +22,7 @@ uint64_t	cur_time(void)
 
 int			state(uint64_t timestamp, int index, char *msg, int count)
 {
-	if (sem_wait(g_party->print_sem))
+	if (g_party->is_anybody_die >= 0 || sem_wait(g_party->print_sem))
 	{
 		while (count)
 		{

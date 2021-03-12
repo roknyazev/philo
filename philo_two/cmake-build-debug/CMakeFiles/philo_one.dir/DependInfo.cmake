@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/wrudy/Desktop/philo_two/ft_atoi.c" "/Users/wrudy/Desktop/philo_two/cmake-build-debug/CMakeFiles/philo_one.dir/ft_atoi.c.o"
-  "/Users/wrudy/Desktop/philo_two/init.c" "/Users/wrudy/Desktop/philo_two/cmake-build-debug/CMakeFiles/philo_one.dir/init.c.o"
-  "/Users/wrudy/Desktop/philo_two/main.c" "/Users/wrudy/Desktop/philo_two/cmake-build-debug/CMakeFiles/philo_one.dir/main.c.o"
-  "/Users/wrudy/Desktop/philo_two/sim.c" "/Users/wrudy/Desktop/philo_two/cmake-build-debug/CMakeFiles/philo_one.dir/sim.c.o"
-  "/Users/wrudy/Desktop/philo_two/utils.c" "/Users/wrudy/Desktop/philo_two/cmake-build-debug/CMakeFiles/philo_one.dir/utils.c.o"
+  "/Users/wrudy/Desktop/philo/philo_two/ft_atoi.c" "/Users/wrudy/Desktop/philo/philo_two/cmake-build-debug/CMakeFiles/philo_one.dir/ft_atoi.c.o"
+  "/Users/wrudy/Desktop/philo/philo_two/init.c" "/Users/wrudy/Desktop/philo/philo_two/cmake-build-debug/CMakeFiles/philo_one.dir/init.c.o"
+  "/Users/wrudy/Desktop/philo/philo_two/main.c" "/Users/wrudy/Desktop/philo/philo_two/cmake-build-debug/CMakeFiles/philo_one.dir/main.c.o"
+  "/Users/wrudy/Desktop/philo/philo_two/sim.c" "/Users/wrudy/Desktop/philo/philo_two/cmake-build-debug/CMakeFiles/philo_one.dir/sim.c.o"
+  "/Users/wrudy/Desktop/philo/philo_two/utils.c" "/Users/wrudy/Desktop/philo/philo_two/cmake-build-debug/CMakeFiles/philo_one.dir/utils.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
